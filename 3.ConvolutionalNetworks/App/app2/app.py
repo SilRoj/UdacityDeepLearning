@@ -2,10 +2,10 @@
 
 import os
 from flask import Flask, render_template, request
+from asset import *
 
 
-
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static', template_folder='templates')
 
 UPLOAD_FOLDER = os.path.basename('uploads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -19,14 +19,17 @@ def upload_file():
 	file = request.files['image']
 	f = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
 	# add your custom code to check that the uploaded file is a valid image and not a malicious file (out-of-scope for this post)
+	file.filename = "input_file.jpg"
 	file.save(f)
-
-	return render_template('index.html')
+	#TO DO run Neuronal Network on asset.py on pass into output 
+	output_predictor = dog_breed_predictor()
+	#print (output_predictor)
+	return output_predictor
 
 
 # run the app.
-#if __name__ == "__main__":
+if __name__ == "__main__":
     	# Setting debug to True enables debug output. This line 
     	# should be removed before deploying a production app.
-#    	app.debug = True
-#    	app.run("0.0.0.0", port=80)
+    	app.debug = True
+    	app.run("0.0.0.0", port=8888)

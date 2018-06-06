@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Python and Flask</title>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/app.css') }}">
+</head>
+
+<body>
+<header class="navbar">
+  <form action="/upload" method="post" enctype="multipart/form-data" >
+      <span class="btn btn-default btn-file">
+        Browse <input type="file" name="image">
+      </span>
+
+    <input type="submit" value="Upload your image" class="btn btn-primary">
+  </form>
+
+  </span>
+</header>
+
+<header > Please check - <a href="https://medium.com/@sightengine_/image-upload-and-moderation-with-python-and-flask-e7585f43828a"> Image upload and moderation with Python and Flask</a></header>
+
+</body>
+</html>
+
